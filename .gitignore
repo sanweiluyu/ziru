@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 修改1
 /.idea
 /.vscode
 /vendor
@@ -6,6 +9,7 @@
 thinkphp
 .env
 .DS_Store
+<<<<<<< HEAD
 =======
 # CakePHP 3
 
@@ -33,3 +37,5 @@ thinkphp
 /app/Config/database.php
 /vendors/*
 >>>>>>> Initial commit
+=======
+>>>>>>> 修改1

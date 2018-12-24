@@ -13,6 +13,7 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
+<<<<<<< HEAD
     'hostname'        => '192.168.12.156',
     // 数据库名
     'database'        => 'ziru',
@@ -20,6 +21,15 @@ return [
     'username'        => 'wu',
     // 密码
     'password'        => '123456',
+=======
+    'hostname'        => '127.0.0.1',
+    // 数据库名
+    'database'        => '',
+    // 用户名
+    'username'        => 'root',
+    // 密码
+    'password'        => '',
+>>>>>>> 修改1
     // 端口
     'hostport'        => '',
     // 连接dsn
