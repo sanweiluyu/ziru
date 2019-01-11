@@ -8,9 +8,9 @@
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
     <meta content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=1" name="viewport">
     <link rel="stylesheet" type="text/css" href="/static/css/common.css" />
-    <script  type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script  type="text/javascript" src="/static/js/z-common.js"></script>
-    <script  type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <!--<script  type="text/javascript" src="/static/js/jquery.min.js"></script>-->
+    <!--<script  type="text/javascript" src="https://passport.ziroom.com/assets/js/z-common.js"></script>-->
+    <!--<script  type="text/javascript" src="https://passport.ziroom.com/assets/js/layer/layer.js"></script>-->
     <link rel="stylesheet" type="text/css" href="/static/css/zoneStyle.css" />
 
 </head>
@@ -76,7 +76,7 @@
 
 
                     <div class="control-group clearfix tc bottom">
-                        已有账号？现在就 <a href="{:url('Sign/in')}" id="toLogin" class="org">登录</a>
+                        已有账号？现在就 <a href="{:url('index/Sign/in')}" id="toLogin" class="org">登录</a>
                     </div><!--/control-group-->
                 </form>
             </div><!--/modal-content-->
@@ -119,11 +119,11 @@
             <div class="glbRight">
 
                 <div class="img">
-                    <img src="/static/images/zrk_ewm.png">
+                    <img src="https://passport.ziroom.com/assets/images/common/zrk_ewm.png">
                     <p>关注自如客微信</p>
                 </div>
                 <div class="img">
-                    <img src="/static/images/app_ewm.png">
+                    <img src="https://passport.ziroom.com/assets/images/common/app_ewm.png">
                     <p>下载自如app</p>
                 </div><!--/img-->
             </div><!--/glbRight-->
@@ -160,11 +160,11 @@
         oHidden.val(u);
         oImg.attr('src','//passport.ziroom.com/img/verify/code/v1?imgId='+u);
     }
-
-    $('#J-m-button').click(function(){
-        addImgRequest('#J-m-img','#J-m-img_hidden');
-    });
-    addImgRequest('#J-m-img','#J-m-img_hidden');
+    //
+    // $('#J-m-button').click(function(){
+    //     addImgRequest('#J-m-img','#J-m-img_hidden');
+    // });
+    // addImgRequest('#J-m-img','#J-m-img_hidden');
 </script>
 
 </body>
