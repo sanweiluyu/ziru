@@ -8,9 +8,9 @@
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
     <meta content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=1" name="viewport">
     <link rel="stylesheet" type="text/css" href="/static/css/common.css" />
-    <!--<script  type="text/javascript" src="/static/js/jquery.min.js"></script>-->
-    <!--<script  type="text/javascript" src="https://passport.ziroom.com/assets/js/z-common.js"></script>-->
-    <!--<script  type="text/javascript" src="https://passport.ziroom.com/assets/js/layer/layer.js"></script>-->
+    <script  type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script  type="text/javascript" src="/static/js/z-common.js"></script>
+    <script  type="text/javascript" src="/static/js/layer/layer.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/zoneStyle.css" />
 
 </head>
@@ -119,11 +119,11 @@
             <div class="glbRight">
 
                 <div class="img">
-                    <img src="https://passport.ziroom.com/assets/images/common/zrk_ewm.png">
+                    <img src="/static/images/zrk_ewm.png">
                     <p>关注自如客微信</p>
                 </div>
                 <div class="img">
-                    <img src="https://passport.ziroom.com/assets/images/common/app_ewm.png">
+                    <img src="/static/images/app_ewm.png">
                     <p>下载自如app</p>
                 </div><!--/img-->
             </div><!--/glbRight-->
@@ -138,6 +138,278 @@
 </div><!--/footer-->
 
 <script type="text/javascript">
+    var oLinksList=$('#linksFooterList');
+    var iLinksHeight=oLinksList.outerHeight();
+    var iNum = iLinksHeight/47;
+    var iN=0;
+
+
+    setInterval(function(){
+        iN++;
+        iN = iN%iNum;
+        var top = iN*47;
+        if(top >= iLinksHeight/2+47){
+            oLinksList.css({'margin-top':'0px'});
+            iN=0;
+        }else{
+            oLinksList.animate({'margin-top':-iN*47+'px'},1000);
+        }
+
+
+
+    },3000);
+
+
+    //mqz 2016.5.11 注册表单验证
+    (function(){
+        var oForm=$('#m-j-sign_form');
+        var oSubmit=$('#signup_button');
+
+        var phoneReg=/^1[0-9]{10}$/;
+        var emailReg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var picyzmReg=/^[a-zA-Z0-9]{3,4}$/;
+
+        var username=$('#sign_name');
+        var usernameInf=username.next();
+
+        var pass1=$('#sign_pas');
+        var pass2=$('#sign_pas_two');
+
+        var yzmDuanxin=$('#sign_duanxin');
+        var yzmBox=yzmDuanxin.parent();
+        var phoneYzmBtn=$('#tel_btn');
+
+        var picYzmInp=$('#sign_yzm');
+        var picYzm=$('#J-m-img');
+
+
+        //各种flag
+        var userFlag=false;
+        var passFlag1=false;
+        var passFlag2=false;
+        var picYzmFlag=false;
+
+
+        //验证用户注册的用户名是手机还是邮箱
+        username.blur(function() {
+            if (phoneReg.test(this.value)) {
+                yzmBox.css({
+                    display: 'block'
+                });
+
+                $(this).attr('name', 'phone');
+
+                var value = username.val() + '';
+                $.ajax({
+                    url:"/index.php?r=account%2Fregister%2Fverify-account",
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{"phone":value,"_csrf":'cHRlY041bTglBAcTBWwKVUUGDwsNfRdqND0rExxyPAgCHwITHUAsAQ=='},
+                    success: function(str) {
+                        if(str.code == '20000'){
+                            if (str.resp.exist == true) {
+                                usernameInf.html('该手机号已注册');
+                                usernameInf.css({
+                                    display: 'block'
+                                });
+                                userFlag = false;
+                            } else {
+                                usernameInf.css({
+                                    display: 'none'
+                                });
+                                userFlag = true;
+                            }
+                        }else{
+                            usernameInf.html(str.message);
+                            usernameInf.css({
+                                display: 'block'
+                            });
+                            userFlag = false;
+                        }
+
+                    }
+                });
+            } else {
+                //alert('请输入符合格式的手机号');
+                username.html('请输入符合格式的手机号');
+                usernameInf.css({
+                    display: 'block'
+                });
+                userFlag = false;
+            }
+        });
+
+
+        //验证用户两次输入密码符合位数且一致
+        //
+        //
+
+        pass1.keydown(function(ev){
+            if(ev.keyCode==32){
+                ev.preventDefault();
+                return false;
+            }
+        });
+
+        pass2.keydown(function(ev){
+            if(ev.keyCode==32){
+                ev.preventDefault();
+                return false;
+            }
+        });
+
+
+        pass1.blur(function(){
+            if(this.value.length>=6&&this.value.length<=16 && this.value.indexOf(' ')==-1){
+                $(this).next().css({
+                    display:'none'
+                });
+                passFlag1=true;
+            }
+            else{
+                $(this).next().css({
+                    display:'block'
+                });
+                passFlag1=false;
+            }
+        });
+
+        pass2.blur(function(){
+            if(this.value.length>=6&&this.value.length<=16&&this.value==pass1.val()){
+                $(this).next().css({
+                    display:'none'
+                });
+                passFlag2=true;
+            }
+            else{
+                $(this).next().css({
+                    display:'block'
+                });
+                passFlag2=false;
+            }
+        });
+
+
+
+        //如果是手机，必须输入图片验证码获取短信验证码
+        picYzmInp.keyup(function(){
+
+            //如果在倒计时就不允许再次点击
+            if(phoneYzmBtn.val()!='获取验证码'&&phoneYzmBtn.val()!='重新发送'){
+                return;
+            }
+
+            //手机格式必须对
+            if( ! userFlag){
+                return;
+            }
+
+            if(picyzmReg.test(this.value)){
+                phoneYzmBtn.addClass('active');
+                phoneYzmBtn[0].onclick=getPhoneYzm;
+                picYzmFlag=true;
+            }
+            else{
+                phoneYzmBtn.removeClass('active');
+                phoneYzmBtn[0].onclick=null;
+                picYzmFlag=false;
+            }
+        });
+
+
+        //点击提交注册表单
+        oSubmit.click(function(){
+            if(userFlag&&passFlag1&&passFlag2&&picYzmFlag){
+                var json=null;
+                if(username.attr('name')=='phone'){
+                    json={phone:username.val(),password:pass1.val(),vcode:yzmDuanxin.val()};
+                }
+                else{
+                    json={email:username.val(),password:pass1.val(),vcode:yzmDuanxin.val()};
+                }
+
+                json._csrf = 'cHRlY041bTglBAcTBWwKVUUGDwsNfRdqND0rExxyPAgCHwITHUAsAQ==';
+                $.ajax({
+                    url:"/index.php?r=account%2Fregister%2Fregister",
+                    type:'POST',
+                    data:json,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.code=='20000'){
+
+                            mLayerMsg('注册成功');
+                            setTimeout(function(){
+                                window.location.href='/index.php?r=user/login';
+                            },2000);
+
+                        }else{
+                            mLayerMsg(data.message);
+                        }
+                    },
+                    error:function(str){
+                        // console.log(str);
+                    }
+                });
+            }
+            else{
+                mLayerMsg('注册信息有误');
+            }
+        });
+
+        //通过传入图片id和用户输入图片验证码的值来获取短信验证码
+        function getPhoneYzm(){
+            stopClick();
+            $.ajax({
+                url:'//passport.ziroom.com/verify/code/v2',
+                dataType:'jsonp',
+                data:{"phone":username.val(),"type":"1","imgId":picYzm.attr('data-imgId'),"imgVValue":picYzmInp.val()},
+                jsonp:"callback",
+                success:function(data){
+                    // console.log(data);
+                    if(data.message=='success'){
+                        picYzm.next().next().css({
+                            display:'none'
+                        });
+                    }
+                    else{
+                        picYzm.next().next().css({
+                            display:'block'
+                        });
+
+                        //重置图片验证码
+                        addImgRequest('#J-m-img','#J-m-img_hidden');
+                    }
+
+                },
+                error:function(str){
+                    //请求失败
+                    // console.log(str);
+                }
+            })
+        }
+
+        //倒计时60S函数
+        function stopClick(){
+
+            var total=60;
+
+            phoneYzmBtn.removeClass('active');
+            phoneYzmBtn[0].onclick=null;
+            phoneYzmBtn.val('60');
+
+            var t=setInterval(function(){
+                total--;
+                phoneYzmBtn.val(total);
+
+                if(total==0){
+                    clearInterval(t);
+                    phoneYzmBtn.addClass('active');
+                    phoneYzmBtn[0].onclick=getPhoneYzm;
+                    phoneYzmBtn.val('重新发送');
+                }
+            },1000);
+        }
+    })();
 
 
     //获取图片验证码
