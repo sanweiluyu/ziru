@@ -8,8 +8,8 @@
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
     <meta content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=1" name="viewport">
     <link rel="stylesheet" type="text/css" href="/static/css/common.css" />
-    <script  type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script  type="text/javascript" src="/static/js/z-common.js"></script>
+    <!--<script  type="text/javascript" src="/static/js/jquery.min.js"></script>-->
+    <!--<script  type="text/javascript" src="/static/js/z-common.js"></script>-->
     <script type='text/javascript'>
         var _vds = _vds || [];
         window._vds = _vds;
@@ -32,7 +32,7 @@
 <body>
 <div class="m-header">
     <div class="m-header_content">
-        <a href=""></a>
+        <a href="/static/images/logins/logo.png"></a>
     </div>
 </div>
 
@@ -72,7 +72,7 @@
                         <input type="checkbox" id="within_a_week">一周内免登录
                     </label>
                 </p>
-                <a href="{:url('lose/password')}" class="fr org">忘记密码？</a>
+                <a href="{:url('index/Lose/password')}" class="fr org">忘记密码？</a>
             </div>
             <div class="control-group clearfix">
                 <input type="button" value="登 录" class="org_btn" id="login_button">
@@ -84,7 +84,7 @@
             </div>
 
             <div class="control-group clearfix tc bottom">
-                没有账号？现在就 <a href="{:url('Sign/up')}" class="org" id="toSignup">注册</a>
+                没有账号？现在就 <a href="{:url('index/Sign/up')}" class="org" id="toSignup">注册</a>
             </div><!--/control-group-->
 
 
@@ -142,26 +142,26 @@
     </div><!--/area-->
 </div><!--/footer-->
 
-<script type="text/javascript">
-    var oLinksList=$('#linksFooterList');
-    var iLinksHeight=oLinksList.outerHeight();
-    var iNum = iLinksHeight/47;
-    var iN=0;
+<!--<script type="text/javascript">-->
+    <!--// var oLinksList=$('#linksFooterList');-->
+    <!--// var iLinksHeight=oLinksList.outerHeight();-->
+    <!--var iNum = iLinksHeight/47;-->
+    <!--var iN=0;-->
 
 
-    setInterval(function(){
-        iN++;
-        iN = iN%iNum;
-        var top = iN*47;
-        if(top >= iLinksHeight/2+47){
-            oLinksList.css({'margin-top':'0px'});
-            iN=0;
-        }else{
-            oLinksList.animate({'margin-top':-iN*47+'px'},1000);
-        }
-    },3000);
+    <!--setInterval(function(){-->
+        <!--iN++;-->
+        <!--iN = iN%iNum;-->
+        <!--var top = iN*47;-->
+        <!--if(top >= iLinksHeight/2+47){-->
+            <!--oLinksList.css({'margin-top':'0px'});-->
+            <!--iN=0;-->
+        <!--}else{-->
+            <!--oLinksList.animate({'margin-top':-iN*47+'px'},1000);-->
+        <!--}-->
+    <!--},3000);-->
 
-</script>
+<!--</script>-->
 
 </body>
 </html>
