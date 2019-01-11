@@ -210,7 +210,7 @@ a:hover {text-decoration: none; color:#ffa001;}
 
 body.hidden{overflow: hidden;}
 
-.m_icon{background-image:url(../images/logins/login_icon.png?20151228);}
+.m_icon{background-image:url(../images/login_icon.png);}
 .cur_pointer{cursor:pointer;}
 
 
@@ -335,7 +335,7 @@ body.hidden{overflow: hidden;}
 .linksFooter dd{float: left; width: 700px;}
 .linksFooter dd a{display: inline-block; margin: 0 5px;}
 
-.footerBottom{padding-left: 200px; background:url(../images/common/logo.png) no-repeat left center; height: 38px; padding-top: 5px;}
+.footerBottom{padding-left: 200px; background:url(../images/logo.png) no-repeat left center; height: 38px; padding-top: 5px;}
 
 ::-webkit-scrollbar{width: 8px; height: 8px;}
 ::-webkit-scrollbar-button:vertical{display:none;}
@@ -344,7 +344,7 @@ body.hidden{overflow: hidden;}
 ::-webkit-scrollbar-thumb:vertical{margin-right:10px; background-color: #999;}
 ::-webkit-scrollbar-thumb:vertical:hover{background-color: #666;}
 ::-webkit-scrollbar-corner:vertical{background-color:#535353;}
-::-webkit-scrollbar-resizer:vertical{background-color:#FF6E00;}
+/*::-webkit-scrollbar-resizer:vertical{background-color:#FF6E00;}*/
 
 
 .fz16{font-size: 16px;}
@@ -714,7 +714,7 @@ body.hidden{overflow: hidden;}
     right:0;
     top:14px;
     left:auto;
-    cursor:pointer
+    cursor:pointer;
 }
 #signup_ok {
     width:360px;
