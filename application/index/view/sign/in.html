@@ -142,26 +142,26 @@
     </div><!--/area-->
 </div><!--/footer-->
 
-<!--<script type="text/javascript">-->
-    <!--// var oLinksList=$('#linksFooterList');-->
-    <!--// var iLinksHeight=oLinksList.outerHeight();-->
-    <!--var iNum = iLinksHeight/47;-->
-    <!--var iN=0;-->
+<script type="text/javascript">
+    var oLinksList = $('#linksFooterList');
+    var iLinksHeight = oLinksList.outerHeight();
+    var iNum = iLinksHeight/47;
+    var iN = 0;
 
 
-    <!--setInterval(function(){-->
-        <!--iN++;-->
-        <!--iN = iN%iNum;-->
-        <!--var top = iN*47;-->
-        <!--if(top >= iLinksHeight/2+47){-->
-            <!--oLinksList.css({'margin-top':'0px'});-->
-            <!--iN=0;-->
-        <!--}else{-->
-            <!--oLinksList.animate({'margin-top':-iN*47+'px'},1000);-->
-        <!--}-->
-    <!--},3000);-->
+    setInterval(function(){
+        iN++;
+        iN = iN%iNum;
+        var top = iN*47;
+        if(top >= iLinksHeight/2+47){
+            oLinksList.css({'margin-top':'0px'});
+            iN=0;
+        }else{
+            oLinksList.animate({'margin-top':-iN*47+'px'},1000);
+        }
+    },3000);
 
-<!--</script>-->
+</script>
 
 </body>
 </html>
