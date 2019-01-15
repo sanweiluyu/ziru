@@ -17,8 +17,6 @@ class Face extends Controller{
 
         return view();
     }
-    public function minsu(){
-        return view();
-    }
+
 
 }

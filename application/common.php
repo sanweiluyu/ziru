@@ -10,3 +10,19 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+function randString($num, $type = 'str')
+{
+    if($type == 'str'){
+        $base = 'qwertyuipasdfghjkxcvbnm3456789QWERTYUOPASDFGHJKLXCVBNM';
+        $b = 53;
+    }else{
+        $base = '0987654321';
+        $b = 9;
+    }
+    $str = '';
+    for ($i = 0; $i < $num; $i++){
+        $str .= $base{rand(0,$b)};
+    }
+    return $str;
+}
